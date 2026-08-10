@@ -1,0 +1,112 @@
+Section: Data Description
+介紹問題。
+介紹資料來源。
+介紹每個欄位所代表的意思。
+介紹哪些欄位是features(理論課程中的X_i)，哪些是labels(理論課程中的y_i)。
+
+---------------------
+
+Section: Quick look at the Data Structure
+
+展示指令XXXX.info()的結果，並說明各columns以及Data型態(如同Ch2: Fig 2-6 )  
+展示指令XXXX.describe()的結果，並說明各columns數值的分布狀況(如同Ch2: Fig 2-7 )  
+展示指令XXXX.hist()的結果，並說明各columns數值的分布狀況(如同Ch2: Fig 2-8 )  
+bins要多少請自行設定。
+
+---------------------
+
+Section: Look for Correlations
+
+展示指令XXXX.corr()的結果，並說明各項與label(理論課程中的y_i)之先的相關性，並找出高度&中度相關的所有欄位。
+展示指令scatter_matrix()的結果(如同Ch2: Fig 2-15 ) 
+**Attribute Combinations**
+如果你有想法要生成新變數增加columns，請在這裡增加新變數，並說明想法為何。
+
+---------------------
+
+Section: Data Cleaning and Transformation
+
+檢查Train Data與Test Data是否有column為類別型資料、是否有缺失值、是否有異常值、是否有column為文字型資料。
+P.S.類別型資料的第1類、第2類、...，這些數字1,2,...之間並不是指倍數的關係，僅是單純的名稱而已。
+請在這裡解決這些問題，使得所有columns皆為機器學習可用的數值資料，並說明想法為何。
+展示指令XXXX.head()的結果來看看Data Cleaning之後的結果。
+
+不要對columns of labels(理論課程中的y_i)做縮放；
+利用XXXX.fit_transform() 將Train Data與Test Data的columns of features(理論課程中的X_i)做縮放。 
+
+---------------------
+
+Section: Select and Train a Model
+
+執行下列六個模型，每個都要訓練出結果(訓練誤差不一定要很小)。
+參數可以改，請自行嘗試。
+
+Model1線性回歸
+from sklearn.linear_model import LinearRegression
+lin_reg = LinearRegression()
+lin_reg.fit(XXXX_features 的矩陣, XXXX_labels 的向量)
+
+Model2決策數
+from sklearn.tree import DecisionTreeRegressor
+tree_reg = DecisionTreeRegressor(random_state=42)
+tree_reg.fit(XXXX_features 的矩陣, XXXX_labels 的向量)
+
+Model3隨機森林
+from sklearn.ensemble import RandomForestRegressor
+forest_reg = RandomForestRegressor(n_estimators=100, random_state=42)
+forest_reg.fit(XXXX_features 的矩陣, XXXX_labels 的向量)
+
+Model4支援向量機
+from sklearn.svm import SVR
+svm_reg = SVR(kernel="linear")
+svm_reg.fit(XXXX_features 的矩陣, XXXX_labels 的向量)
+
+Model5感知器
+from sklearn.linear_model import Perceptron
+per = Perceptron(max_iter=1000, tol=1e-3, random_state=42)
+per.fit(XXXX_features 的矩陣, XXXX_labels 的向量)
+
+Model6神經網路
+from sklearn.neural_network import MLPRegressor
+mlp_reg = MLPRegressor(hidden_layer_sizes=(100,100),  max_iter=1000, tol=1e-3, random_state=42)
+mlp_reg.fit(XXXX_features 的矩陣, XXXX_labels 的向量)
+
+---------------------
+
+Section: Cross-Validation
+
+對六個模型分別展示指令-cross_val_score()的結果。
+請在這裡說明你會選哪個模型，並說明想法為何。
+
+---------------------
+
+Section: Analyzing the Best Models
+
+如果是Model1展示lin_reg.coef_
+如果是Model2展示tree_reg.feature_importances_
+如果是Model3展示tforest_reg.feature_importances_
+如果是Model4展示svm_reg.coef_
+如果是Model5展示per_clf.coef_
+如果是Model6展示mlp_clf.coef_
+
+指出哪些是影響力較高的features。
+數學結果是否和現實生活中的現象符合?為什麼?給出推測。
+未來你可以嘗試丟掉一些影響力較低的features來改善模型，但這不是我們第一個project要做的事。
+
+---------------------
+
+Section: Evaluate Your System on the Test Data
+
+將訓練好的模型套入test data，紀錄預測值。報告附上預測值的檔案，老師要看預測的表現如何。
+記得在Section: Data Cleaning and Transformation時，有將train data的columns of features做縮放，別忘了test data的columns of features也要做縮放。
+
+---------------------
+
+Section: Discussion and Conclusion
+
+討論一些做Project時遇到的問題，觀察到的有趣現象，...等。
+給出結論。
+
+---------------------
+
+Section: References
