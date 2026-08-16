@@ -49,4 +49,4 @@ The best-performing model is selected based on cross-validation ROC-AUC and then
 
 The final trained pipeline is saved as:
 
-`models/best_model.joblib`
+`best_model.joblib`
